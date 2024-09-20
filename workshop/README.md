@@ -13,7 +13,7 @@ The main goal of this workshop to get sense how to deal with legacy code. I've p
 We aren't try to integrate it to slack (as the ideal origin flow), but if you want, you can follow this [steps](https://github.com/arifpz/slack-overflow?tab=readme-ov-file#integrate-with-your-team). We will do integration test locally using postman or curl.
 
 ### StackExchange credentials
-Add a `config.py` file based on `config.py.example` file. Grab your StackExchange key from http://stackapps.com/
+Add a `config.py` file based on `config.py.example` file. Grab your StackExchange key from https://stackapps.com/apps/oauth/register
 
 ### Run the code
 - Make sure you have python installed on your local machine, if not, follow this [steps](https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/)
