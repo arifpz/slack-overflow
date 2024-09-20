@@ -14,7 +14,7 @@ except:
 
 if not se_key:
     import sys
-    print 'No config.py file found. Exiting...'
+    print('No config.py file found. Exiting...')
     sys.exit(0)
 
 
@@ -51,7 +51,7 @@ def overflow():
     resp_qs = ['Stack Overflow Top Questions for "%s"\n' % text]
     resp_qs.extend(map(get_response_string, qs[:MAX_QUESTIONS]))
 
-    if len(resp_qs) is 1:
+    if len(resp_qs) == 1:
         resp_qs.append(('No questions found. Please try a broader search or '
                         'search directly on '
                         '<https://stackoverflow.com|StackOverflow>.'))
