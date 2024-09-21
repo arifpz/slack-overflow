@@ -62,8 +62,7 @@ def overflow():
 
 @app.route('/')
 def hello():
-    return redirect('https://github.com/karan/slack-overflow')
-
+    return 'Hello, World!'
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
