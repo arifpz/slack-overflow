@@ -40,6 +40,11 @@ def overflow():
     '''
     text = request.values.get('text')
 
+    # Check it's number or not
+    num_questions = request.values.get('num_questions', MAX_QUESTIONS)
+    if not num_questions.isdigit():
+        num_questions = MAX_QUESTIONS
+
     try:
         qs = so.search(intitle=text, sort=Sort.Votes, order=DESC)
     except UnicodeEncodeError:
@@ -49,12 +54,28 @@ def overflow():
 
 
     resp_qs = ['Stack Overflow Top Questions for "%s"\n' % text]
-    resp_qs.extend(map(get_response_string, qs[:MAX_QUESTIONS]))
-
+    resp_qs.extend(map(get_response_string, qs[:int(num_questions)]))
     if len(resp_qs) == 1:
         resp_qs.append(('No questions found. Please try a broader search or '
                         'search directly on '
                         '<https://stackoverflow.com|StackOverflow>.'))
+    # print('\n'.join(resp_qs))
+    else:
+        for resp_q in resp_qs:
+            # split with " " by 3 times
+            resp_q = resp_q.split(' ', 2)
+
+            # Select the the third element of the list
+            # which is the url of the question
+            url = resp_q[2]
+            # Look for "|" and add whitespaces around it
+            url = url.replace('|', ' | ')
+
+            # Add the url back to the list
+            resp_q[2] = url
+
+            # Join the list back to a string
+            resp_q = ' '.join(resp_q)
 
     return Response('\n'.join(resp_qs),
                     content_type='text/plain; charset=utf-8')
@@ -62,8 +83,7 @@ def overflow():
 
 @app.route('/')
 def hello():
-    return redirect('https://github.com/karan/slack-overflow')
-
+    return 'Hello, World!'
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
