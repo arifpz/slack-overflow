@@ -28,7 +28,7 @@ so = Site(StackOverflow, se_key)
 def get_response_string(q):
     q_data = q.json
     check = ' :white_check_mark:' if q.json['is_answered'] else ''
-    return "|%d|%s <%s|%s> (%d answers)" % (q_data['score'], check, q.url,
+    return "|%d|%s <%s |%s> (%d answers)" % (q_data['score'], check, q.url,
                                             q.title, q_data['answer_count'])
 
 
@@ -62,7 +62,8 @@ def overflow():
 
 @app.route('/')
 def hello():
-    return redirect('https://github.com/karan/slack-overflow')
+    return 'Hello! Please make a POST request to /overflow with "text" key that contains the problem keyword in form data to use the API.'
+    # return redirect('https://github.com/karan/slack-overflow')
 
 
 if __name__ == '__main__':
