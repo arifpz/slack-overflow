@@ -92,8 +92,6 @@ def overflow_dynamic():
     return Response('\n'.join(resp_qs),
                     content_type='text/plain; charset=utf-8')
 
-
-
 @app.route('/')
 def hello():
     return redirect('https://github.com/karan/slack-overflow')
